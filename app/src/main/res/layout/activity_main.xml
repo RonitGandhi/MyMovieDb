@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#121212"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+
+    <EditText
+        android:layout_marginTop="15dp"
+        android:id="@+id/enter_movie_name"
+        android:layout_width="370dp"
+        android:paddingLeft="10dp"
+        android:layout_gravity="center"
+        android:background="@drawable/searchbar"
+        android:hint="@string/edittext"
+        android:textColor="@color/white"
+        android:textColorHint="#57FFFFFF"
+        android:layout_height="50dp" />
+    <Button
+        android:layout_marginTop="5dp"
+        android:id="@+id/searchBtn"
+        android:layout_width="300dp"
+        android:layout_gravity="center"
+        android:textSize="15dp"
+        android:fontFamily="sans-serif-condensed"
+        app:backgroundTint="#121212"
+        android:layout_height="wrap_content"
+        android:textAllCaps="false"
+        android:text="@string/search"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginTop="15dp"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:id="@+id/imageview"
+            android:layout_width="200dp"
+            android:layout_height="300dp" />
+
+        <LinearLayout
+
+            android:layout_width="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginLeft="10dp"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/title"
+                android:textColor="@color/white"
+                android:layout_marginLeft="5dp"
+                android:layout_width="170dp"
+                android:gravity="center"
+                android:layout_height="40dp"/>
+            <TextView
+                android:id="@+id/year"
+                android:gravity="center"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/white"
+                android:layout_width="170dp"
+                android:layout_height="40dp"/>
+            <TextView
+                android:gravity="center"
+                android:id="@+id/released_date"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="5dp"
+                android:textColor="@color/white"
+                android:layout_width="170dp"
+                android:layout_height="40dp"/>
+            <TextView
+                android:gravity="center"
+                android:id="@+id/runtime"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="5dp"
+                android:textColor="@color/white"
+                android:layout_width="170dp"
+                android:layout_height="40dp"/>
+            <TextView
+                android:gravity="center"
+                android:id="@+id/genre"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="5dp"
+                android:textColor="@color/white"
+                android:layout_width="170dp"
+                android:layout_height="40dp"/>
+            <TextView
+                android:gravity="center"
+                android:id="@+id/Director"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="5dp"
+                android:textColor="@color/white"
+                android:layout_width="170dp"
+                android:layout_height="40dp"/>
+            <TextView
+                android:gravity="center"
+                android:id="@+id/language"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="5dp"
+                android:textColor="@color/white"
+                android:layout_width="170dp"
+                android:layout_height="40dp"/>
+            <TextView
+                android:gravity="center"
+                android:id="@+id/IMDBrating"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="5dp"
+                android:textColor="@color/white"
+                android:layout_width="170dp"
+                android:layout_height="40dp"/>
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+
+    <TextView
+        android:id="@+id/plot"
+        android:padding="10dp"
+        android:textColor="@color/white"
+        android:layout_marginTop="20dp"
+        android:textSize="17dp"
+        android:layout_width="match_parent"
+        android:layout_height="130dp"/>
+
+
+
+</LinearLayout>
