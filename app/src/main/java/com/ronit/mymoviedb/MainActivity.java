@@ -3,6 +3,8 @@ package com.ronit.mymoviedb;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -18,17 +20,29 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.List;
+
+import static com.ronit.mymoviedb.MainActivity2.arraylist;
+
 public class MainActivity extends AppCompatActivity {
 
+    private static final String LISTVIEW = "LISTVIEW" ;
+    private static final String THOUGHT = "though";
     ImageView poster;
     TextView title, year, releaseDate,runtime, genre, director , plot, language, rating;
     EditText name;
     Button search;
     CardView cardView;
+    Button addBtn, listBtn;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +62,9 @@ public class MainActivity extends AppCompatActivity {
         search = findViewById(R.id.searchBtn);
         rating = findViewById(R.id.IMDBrating);
         //cardView = findViewById(R.id.Card1);
+        listBtn = findViewById(R.id.list);
+        addBtn = findViewById(R.id.favBtn);
+
 
 
         search.setOnClickListener(new View.OnClickListener() {
@@ -63,16 +80,54 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+        addBtn.setOnClickListener(view -> {
+            addMovie();
+            saveMovie();
 
-
-
+        });
+        listBtn.setOnClickListener(view -> {
+            openAct2();
+            listLoad();
+        });
 
     }
 
+    private void listLoad() {
+        SharedPreferences sharedPreferences = getSharedPreferences(LISTVIEW, MODE_PRIVATE);
+        Gson gson = new Gson();
+        String json = sharedPreferences.getString(THOUGHT, null);
+        Type type = new TypeToken<ArrayList<String>>() {}.getType();
+        arraylist = gson.fromJson(json, type);
+    }
+
+    private void saveMovie() {
+        SharedPreferences sharedPreferences = getSharedPreferences(LISTVIEW, MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        Gson gson = new Gson();
+        String json = gson.toJson(arraylist);
+        editor.putString(THOUGHT, json);
+        editor.apply();
+    }
+
+    private void openAct2() {
+        Intent intent = new Intent(this, MainActivity2.class);
+        startActivity(intent);
+        
+    }
+    private void addMovie() {
+        String name = title.getText().toString();
+        String rating_tv = rating.getText().toString();
+        arraylist.add(name+", \n"+rating_tv);
+
+    }
     private void ShowMovie() {
         String name_movie = name.getText().toString();
-        String URL = "https://www.omdbapi.com/?t="+name_movie+"&apikey=API_KEY_HERE";
+        String URL = "https://www.omdbapi.com/?t="+name_movie+"&apikey=b31fa676";
         RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
+        addBtn.setBackground(getResources().getDrawable(R.drawable.add_layout));
+        addBtn.setText("Add to favourites");
+        addBtn.setVisibility(View.VISIBLE);
+
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, URL, null, new Response.Listener<JSONObject>() {
             @Override

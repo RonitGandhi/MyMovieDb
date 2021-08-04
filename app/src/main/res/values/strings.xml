@@ -2,4 +2,5 @@
     <string name="app_name">MyMovieDb</string>
     <string name="edittext">Enter any movie/tv show name</string>
     <string name="search">Search</string>
+    <string name="fav"> Go to favourites</string>
 </resources>
